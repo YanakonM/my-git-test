@@ -1,0 +1,58 @@
+name: Validate Repository
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Check required files
+      run: |
+        echo "🔍 Checking for required files..."
+        
+        required_files=(
+          "README.md"
+          "index.html"
+          "style.css"
+          "CHANGELOG.md"
+        )
+        
+        for file in "${required_files[@]}"; do
+          if [ -f "$file" ]; then
+            echo "✅ Found: $file"
+          else
+            echo "❌ Missing: $file"
+            exit 1
+          fi
+        done
+        
+        echo "✅ All required files present!"
+    
+    - name: Validate HTML
+      run: |
+        echo "🔍 Checking HTML syntax..."
+        if grep -q "<!DOCTYPE html>" index.html; then
+          echo "✅ Valid HTML5 DOCTYPE"
+        else
+          echo "❌ Missing HTML5 DOCTYPE"
+          exit 1
+        fi
+        
+    - name: Count commits
+      run: |
+        echo "📊 Repository Statistics:"
+        echo "Total commits: $(git rev-list --count HEAD)"
+        echo "Branches: $(git branch -r | wc -l)"
+        
+    - name: Success message
+      run: |
+        echo "✅ All validations passed!"
+        echo "🎉 Repository is in good shape!"

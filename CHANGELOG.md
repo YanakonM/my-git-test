@@ -1,6 +1,23 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+
+## [1.1.0] - 2026-01-14
+
+### Added
+- Portfolio website with GitHub Pages deployment
+- GitHub Actions workflow for automatic validation
+- Auto-deployment on push to main branch
+- Responsive CSS design with gradient theme
+- Learning progress visualization
+
+### Improved
+- Documentation with Week 5 tutorial
+- Repository automation with CI/CD
+
+---
+
+
 ## [1.0.0] - 2026-01-14
 ### Added
 - Advanced profile system with Git Flow information
