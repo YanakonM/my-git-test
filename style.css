@@ -1,9 +1,16 @@
+/* ===================================
+   CSS สำหรับ Portfolio Website
+   Git & GitHub Learning Journey
+   =================================== */
+
+/* รีเซ็ตค่าพื้นฐานของทุก element */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* สไตล์พื้นฐานของ body */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -13,6 +20,7 @@ body {
     padding: 20px;
 }
 
+/* กล่องหลักที่รวมเนื้อหาทั้งหมด */
 .container {
     max-width: 1000px;
     margin: 0 auto;
@@ -22,6 +30,7 @@ body {
     overflow: hidden;
 }
 
+/* ส่วนหัวของเว็บไซต์ */
 header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -82,8 +91,15 @@ h2 {
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.9; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.9;
+    }
 }
 
 .week h3 {
@@ -171,11 +187,11 @@ footer a:hover {
     header h1 {
         font-size: 2em;
     }
-    
+
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     section {
         padding: 20px;
     }

@@ -1,19 +1,29 @@
+# ===================================
+# GitHub Actions Workflow
+# ตรวจสอบความถูกต้องของ Repository
+# ===================================
+
 name: Validate Repository
 
+# กำหนดเหตุการณ์ที่จะให้ workflow ทำงาน
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, develop ]  # เมื่อมีการ push ไปที่ main หรือ develop
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, develop ]  # เมื่อมี Pull Request ไปที่ main หรือ develop
 
+# งานที่จะทำ
 jobs:
   validate:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # ใช้ระบบ Ubuntu ล่าสุด
     
+    # ขั้นตอนการทำงาน
     steps:
+    # ขั้นที่ 1: ดึงโค้ดจาก repository
     - name: Checkout code
       uses: actions/checkout@v4
       
+    # ขั้นที่ 2: ตรวจสอบไฟล์ที่จำเป็น
     - name: Check required files
       run: |
         echo "🔍 Checking for required files..."
@@ -36,6 +46,7 @@ jobs:
         
         echo "✅ All required files present!"
     
+    # ขั้นที่ 3: ตรวจสอบ HTML Syntax
     - name: Validate HTML
       run: |
         echo "🔍 Checking HTML syntax..."
@@ -46,12 +57,14 @@ jobs:
           exit 1
         fi
         
+    # ขั้นที่ 4: นับจำนวน commits
     - name: Count commits
       run: |
         echo "📊 Repository Statistics:"
         echo "Total commits: $(git rev-list --count HEAD)"
         echo "Branches: $(git branch -r | wc -l)"
         
+    # ขั้นที่ 5: แสดงข้อความสำเร็จ
     - name: Success message
       run: |
         echo "✅ All validations passed!"
